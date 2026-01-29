@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Muqaddas Trading Engine 💚</title>
+</head>
+<body>
+    <script>
+        // Sultan's Sovereign Trading Rules [cite: 2026-01-29]
+        const TRADING_CAPITAL_PERCENT = 0.45; // 45% of company profit [cite: 2026-01-29]
+        const WIN_PROBABILITY_LIMIT = 0.45;    // Winning 45% se niche toh NO TRADE [cite: 2026-01-29]
+
+        function startGlobalTrade(marketCondition, currentProfit) {
+            // Agar winning niche aati hai toh nahi khelega [cite: 2026-01-29]
+            if (marketCondition.winChance >= WIN_PROBABILITY_LIMIT) {
+                let tradeAmount = currentProfit * TRADING_CAPITAL_PERCENT;
+                console.log("Sultan's Logic: Win chance high. Trading with: " + tradeAmount);
+                return true; 
+            } else {
+                console.log("Safety Lock: Win chance low. Engine Paused.");
+                return false; 
+            }
+        }
+        
+        // Charity & Family Split logic [cite: 2026-01-09, 2026-01-10]
+        const CHARITY_SHARE = 0.45;
+        const FAMILY_SHARE = 0.10;
+    </script>
+</body>
+</html>
