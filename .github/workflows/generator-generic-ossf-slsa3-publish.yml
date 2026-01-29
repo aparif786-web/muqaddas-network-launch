@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muqaddas Network 💚</title>
+    <style>
+        body { text-align: center; background: linear-gradient(135deg, #11998e, #38ef7d); color: white; font-family: sans-serif; padding: 50px; min-height: 100vh; }
+        .card { border: 3px solid gold; padding: 30px; border-radius: 15px; background: rgba(0,0,0,0.3); display: inline-block; }
+        button { padding: 15px 30px; background: gold; border: none; font-weight: bold; border-radius: 10px; cursor: pointer; color: #11998e; font-size: 1.1em; }
+    </style>
+</head>
+<body>
+    <div class="card">
+        <h1>👑 Muqaddas Network</h1>
+        <h2>🏆 Guinness World Record Mission</h2>
+        <p>💚 45% Charity Dedicated to Cancer Patients</p>
+        <button onclick="alert('✅ Joining fee of ₹1 received!\nMission Live.')">Pay ₹1 Joining Fee</button>
+    </div>
+    <p style="margin-top:30px;">&copy; 2026 Muqaddas Network | Founder: Sultan</p>
+</body>
+</html>
