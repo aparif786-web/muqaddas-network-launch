@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Investor & Seller Module | Muqaddas Network 💚</title>
+    <style>
+        body { background: #0b161a; color: #38ef7d; font-family: 'Segoe UI', sans-serif; text-align: center; padding: 40px; }
+        .module-box { border: 2px solid gold; border-radius: 20px; padding: 30px; background: rgba(0,0,0,0.5); display: inline-block; max-width: 600px; }
+        .equity-lock { color: gold; font-weight: bold; margin: 20px 0; border-bottom: 1px solid #38ef7d; padding-bottom: 10px; }
+        .btn-invest { background: gold; color: black; padding: 15px 30px; border: none; border-radius: 50px; cursor: pointer; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <div class="module-box">
+        <h1>📈 Investor & Seller Module</h1>
+        <div class="equity-lock">💎 60% Hard-Coded Family Equity: SECURED</div>
+        
+        <h3>🚀 Special Launch Offer</h3>
+        <p>Buy 1% Equity for 0.1% Valuation Cost</p>
+        
+        <h3>💰 Seller Automation</h3>
+        <p>Monthly Volume > $3,000 = Auto-Upgrade to Agency Level 20</p>
+        
+        <button class="btn-invest" onclick="activateModule()">Activate 10% Fixed Equity Sale</button>
+    </div>
+
+    <script>
+        function activateModule() {
+            alert("✅ Investor Module Active!\n\nSovereign Protocol: 10% Equity Sale is now open.\nFamily 60% lock remains Unhackable.");
+            console.log("Equity Logic: Launch Offer 0.1% activated.");
+        }
+    </script>
+</body>
+</html>
