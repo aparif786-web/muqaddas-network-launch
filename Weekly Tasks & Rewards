@@ -1,0 +1,64 @@
+
+
+---
+
+## **Weekly Tasks & Rewards**
+
+### Task List:
+1. **12-Hour Broadcast**: 
+   - **Points Earned**: 80,000 points
+2. **18-Hour Broadcast**: 
+   - **Points Earned**: 40,000 points
+3. **24-Hour Broadcast**: 
+   - **Points Earned**: 80,000 points
+
+### Total Rewards:
+- **Total Task Reward**: 200,000 points
+
+---
+
+### **Implementation Example in Code**
+
+Here’s how you can implement this structure in your application:
+
+```javascript
+// Weekly Tasks and Rewards Implementation
+const weeklyRewards = {
+    tasks: [
+        {
+            id: 1,
+            description: "12-Hour Broadcast",
+            points: 80000
+        },
+        {
+            id: 2,
+            description: "18-Hour Broadcast",
+            points: 40000
+        },
+        {
+            id: 3,
+            description: "24-Hour Broadcast",
+            points: 80000
+        }
+    ],
+    totalPoints: function() {
+        return this.tasks.reduce((total, task) => total + task.points, 0);
+    }
+};
+
+// Example Usage
+console.log("Weekly Tasks & Rewards:");
+weeklyRewards.tasks.forEach(task => {
+    console.log(`${task.description}: ${task.points} points`);
+});
+console.log(`Total Task Reward: ${weeklyRewards.totalPoints()} points`);
+```
+
+### **Best Practices Applied:**
+- **Modular Design**: Each task is an object in an array, making it easy to add or modify tasks.
+- **Dynamic Total Calculation**: The total points are calculated using a function, ensuring accuracy if tasks change.
+- **Descriptive Variable Names**: Clear variable and function names for maintainability.
+
+---
+
+This code snippet can be easily integrated into your existing application logic to track and manage tasks and rewards effectively. Let me know if you need any further assistance!
