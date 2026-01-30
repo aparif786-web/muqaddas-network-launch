@@ -1,0 +1,53 @@
+
+---
+
+## **Live Time Reward and Weekly Earnings**
+
+### **1. Live Time Reward**
+- **Reward Amount**: $40 USD per week
+- **Description**: A fixed weekly reward for star hosts, encouraging sustained engagement.
+
+### **2. Weekly Earnings Limit**
+- **Maximum Points**: 800,000 points per week
+- **Description**: A star host can earn up to 800,000 points weekly, incentivizing high performance.
+
+---
+
+### **Implementation Example in Code**
+
+Here’s a code snippet to implement these features in your application:
+
+```javascript
+// Live Time Rewards and Weekly Earnings Implementation
+const liveTimeReward = {
+    amount: 40, // USD
+    frequency: "weekly",
+    description: "Fixed reward for star hosts"
+};
+
+const weeklyEarnings = {
+    maxPoints: 800000, // Maximum points a star host can earn weekly
+    pointsToUSD: 0.00005, // Example conversion rate: 1 point = $0.00005
+    calculateEarnings: function(points) {
+        return points * this.pointsToUSD; // Convert points to USD
+    }
+};
+
+// Example Usage
+console.log("Live Time Reward:");
+console.log(`Amount: $${liveTimeReward.amount} ${liveTimeReward.frequency}`);
+
+console.log("\nWeekly Earnings:");
+console.log(`Maximum Points Earnable: ${weeklyEarnings.maxPoints}`);
+const earningsUSD = weeklyEarnings.calculateEarnings(weeklyEarnings.maxPoints);
+console.log(`Potential Earnings ($): $${earningsUSD.toFixed(2)}`);
+```
+
+### **Best Practices Applied:**
+- **Clear Structure**: Organized data into meaningful objects for better readability and maintainability.
+- **Dynamic Calculations**: The function allows easy updates to the points-to-USD conversion rate.
+- **Descriptive Variable Names**: Clear naming conventions enhance code clarity.
+
+---
+
+This implementation can be integrated into your existing codebase to track rewards and earnings effectively. If you need any additional features or adjustments, feel free to ask!
