@@ -1,0 +1,67 @@
+
+## **Random PK Battle System Overview**
+
+### **Purpose**
+The Random PK Battle System is designed to:
+- Allow users (students and educated individuals) to engage in friendly competitions.
+- Incorporate educational elements through questions and challenges.
+- Provide a platform for live streaming and mind games.
+- Foster a community of learners and gamers.
+
+### **Key Features**
+1. **Random Matchmaking**: Automatically pair users for battles based on skill level.
+2. **Dynamic Challenges**: Users can choose from various educational challenges or mind games.
+3. **Live Streaming**: Participants can stream their battles in real-time.
+4. **Banner Customization**: Users can create and display banners representing their skills and achievements.
+5. **Exam Mode**: Users can take exams or quizzes to earn points and compete in battles.
+6. **Leaderboards**: Track performance, achievements, and rankings.
+7. **Rewards System**: Earn rewards for participation, victories, and contributions to the community.
+
+### **Technical Implementation**
+
+#### **1. Database Schema**
+Define a schema for users, battles, and challenges:
+
+```javascript
+// User Schema
+const userSchema = {
+    userId: String,
+    name: String,
+    skillLevel: Number, // E.g., 1-10
+    banner: String,
+    totalBattles: Number,
+    wins: Number,
+    losses: Number,
+    currentStreak: Number,
+    examScores: Array // Scores from exams taken
+};
+
+// Battle Schema
+const battleSchema = {
+    battleId: String,
+    participant1: String, // userId
+    participant2: String, // userId
+    challenge: String,
+    startTime: Date,
+    endTime: Date,
+    winner: String,
+    status: String // 'active', 'completed', 'canceled'
+};
+
+// Challenge Schema
+const challengeSchema = {
+    challengeId: String,
+    question: String,
+    options: Array, // Multiple-choice options
+    correctAnswer: String,
+    pointValue: Number
+};
+```
+
+#### **2. API Endpoints**
+Create endpoints for matchmaking, battle initiation, and challenge management:
+
+```javascript
+// Random Matchmaking
+app.get('/api/matchmaking', async (req, res) => {
+    const matchedUsers = await findMatch(req.userId
