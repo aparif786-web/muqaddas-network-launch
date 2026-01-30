@@ -1,0 +1,76 @@
+
+
+# Financial Logic for Muqaddas Network
+
+**Effective Date:** [Insert date]
+
+## Introduction
+
+
+---
+
+## 1. Financial Model Overview
+
+### **Revenue Generation**
+- Revenue is generated through:
+  - User joining fees (₹1)
+  - Transaction fees (₹15 split into maintenance and charity)
+  - Donations and fundraising activities
+
+### **Profit Allocation**
+- **45%** of profits are allocated to charity.
+- **45%** are reinvested into technology development.
+- **10%** are reserved for family equity.
+
+---
+
+## 2. Charity Allocation Logic
+
+### **Automatic Charity Trigger**
+```javascript
+const CHARITY_TRIGGER_THRESHOLD = 50000; // ₹50,000 threshold for charity allocation
+
+function allocateCharity(profit) {
+    if (profit >= CHARITY_TRIGGER_THRESHOLD) {
+        const charityAmount = profit * 0.45; // 45% to charity
+        updateCharityVault(charityAmount);
+        console.log(`₹${charityAmount} allocated to charity.`);
+    }
+}
+```
+
+### **Example Usage**
+```javascript
+const profit = 75000;
+allocateCharity(profit); // This will allocate ₹33,750 to charity
+```
+
+---
+
+## 3. Tax Calculation
+
+### **Tax Rates**
+- **GST**: 18% on service fees
+- **Income Tax**: Based on applicable slabs, typically around 30% for businesses.
+
+### **Tax Calculation Logic**
+```javascript
+const GST_RATE = 0.18;
+const INCOME_TAX_RATE = 0.30;
+
+function calculateGST(amount) {
+    return amount * GST_RATE;
+}
+
+function calculateIncomeTax(profit) {
+    return profit * INCOME_TAX_RATE;
+}
+
+// Example of calculating taxes
+const totalServiceFee = 15; // ₹15 service fee
+const gst = calculateGST(totalServiceFee);
+console.log(`GST on service fee: ₹${gst}`);
+
+const profit = 75000; // Assuming profit is ₹75,000
+const incomeTax = calculateIncomeTax(profit);
+console.log(`Income Tax on profit: ₹${
