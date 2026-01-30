@@ -1,0 +1,76 @@
+
+
+## **Training Folder Structure**
+
+### **1. Folder: Training**
+- Create a folder named **`training/`** in your project structure.
+
+### **2. File: Host_Training_Guide.md**
+This file will be the comprehensive guide for new hosts. Here’s a suggested outline:
+
+```markdown
+# Host Training Guide
+
+## Introduction
+Welcome to the Muqaddas Network Host Training Guide. This document will assist you in managing challenging tasks, such as conducting 18 or 24-hour broadcasts.
+
+### Purpose
+Understanding these tasks is critical. If hosts do not grasp the requirements, it may lead to a slowdown in the app's economy and overall user experience.
+
+---
+
+## 1. Getting Started
+### 1.1 Account Creation
+- Steps to create and verify your account.
+- Importance of using accurate information.
+
+### 1.2 Navigating the App
+- Overview of the user interface.
+- Key features relevant to hosts.
+
+---
+
+## 2. Understanding Broadcasts
+### 2.1 Preparing for Broadcasting
+- Best practices for preparing content ahead of time.
+- How to set up equipment (camera, microphone, lighting).
+
+### 2.2 Scheduling a Broadcast
+- Step-by-step guide on how to schedule your broadcast.
+- Tips for choosing the best time slots.
+
+---
+
+## 3. Hosting a Live Broadcast
+### 3.1 Technical Setup
+- Internet speed recommendations for optimal streaming.
+- Tools for monitoring broadcast quality.
+
+### 3.2 Engaging with Audience
+- Techniques for interacting with viewers during the broadcast.
+- Using polls and Q&A sessions to increase engagement.
+
+### 3.3 Handling Issues
+- Common technical difficulties and how to resolve them.
+- Managing negative comments or interruptions.
+
+---
+
+## 4. Post-Broadcast Actions
+### 4.1 Analyzing Performance
+- Reviewing viewer feedback and engagement metrics.
+- Tools for analyzing broadcast performance.
+
+### 4.2 Follow-Up Activities
+- Sending thank-you messages to participants.
+- Planning content for future broadcasts based on performance.
+
+---
+
+## 5. Frequently Asked Questions (FAQs)
+- Common queries hosts might have and their solutions.
+- Contact information for additional support.
+
+---
+
+## Conclusion
