@@ -1,0 +1,64 @@
+Here’s a structured outline for the **Charity_Proof** folder focused on transparency in your application:
+
+---
+
+## **Charity_Proof Folder Structure**
+
+### **1. Folder: Charity_Proof**
+Create a folder named **`charity_proof/`** in your project structure.
+
+### **2. File: Charity_Transparency.md**
+This file will detail how the 2% contribution and subsequent 100% charity allocation works, including links to live databases, receipts, and transactions.
+
+```markdown
+# Charity Transparency Document
+
+## Introduction
+This document provides transparency regarding the charity contributions from the Muqaddas Network. It outlines how 2% of earnings and the subsequent 100% of profits above ₹50,000 are allocated to charity.
+
+### Why This is Important
+Maintaining transparency is crucial for building trust with our users and ensuring compliance with Guinness World Record standards. This demonstrates our commitment to charitable giving and accountability. [cite:2026-01-07]
+
+---
+
+## 1. Chariy Contribution Breakdown
+- **Initial Contribution**: 2% of all revenue generated.
+- **Trigger Point**: 100% of profits after crossing ₹50,000.
+  
+### Example Calculation:
+- Total Revenue: ₹60,000
+- Charity Contribution: 
+    - Initial 2%: ₹1,200
+    - Remaining 100% after ₹50,000: ₹10,000
+    - Total to Charity: ₹11,200
+
+---
+
+## 2. Live Database Links
+### A. [Charity Distribution Database](https://link-to-charity-database.com)
+- This database contains real-time records of all charity allocations.
+
+### B. [Transaction Receipts](https://link-to-transaction-receipts.com)
+- All transactions related to charity contributions are recorded here.
+
+---
+
+## 3. Charity Allocation Process
+1. **Revenue Tracking**: All earnings are tracked through our financial system.
+2. **Charity Trigger**: Once the revenue exceeds ₹50,000, the charity allocation mechanism is activated.
+3. **Fund Distribution**: Funds are automatically directed to identified charitable organizations.
+
+### Example of Database Entry:
+```json
+{
+    "transactionId": "TXN_1001",
+    "amount": 11200,
+    "charityRecipient": "Cancer Care Foundation",
+    "timestamp": "2026-01-15T12:00:00Z"
+}
+```
+
+---
+
+## 4. Compliance & Verification
+- We are committed to
