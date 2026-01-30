@@ -1,0 +1,185 @@
+
+
+---
+
+# VIP_Unban_System.md
+
+**Effective Date:** [Insert date]
+
+## Purpose
+
+
+---
+
+## VIP Ban/Unban System
+
+### 1. System Architecture
+
+```javascript
+// Ban/Unban system structure
+const BanSystem = {
+    roles: {
+        ADMIN: 'admin',
+        MODERATOR: 'moderator',
+        SUPER_ADMIN: 'super_admin'
+    },
+    
+    banReasons: {
+        SPAM: 'Spam or abusive behavior',
+        FRAUD: 'Fraudulent activity',
+        VIOLATION: 'Terms of service violation',
+        SECURITY: 'Security threat',
+        OTHER: 'Other reasons'
+    },
+    
+    verificationLevels: {
+        LEVEL_1: 'Moderator review',
+        LEVEL_2: 'Admin approval',
+        LEVEL_3: 'Super admin final decision'
+    }
+};
+```
+
+### 2. Ban User Implementation
+
+```javascript
+/**
+ * Ban a user account with manual verification
+ * @param {string} userId - User ID to ban
+ * @param {string} adminId - Admin performing the action
+ * @param {object} banDetails - Ban details
+ * @returns {Promise<object>} - Ban result
+ */
+async function banUser(userId, adminId, banDetails) {
+    try {
+        // Step 1: Verify admin permissions
+        const hasPermission = await verifyAdminPermission(adminId, 'BAN_USER');
+        if (!hasPermission) {
+            return {
+                success: false,
+                error: 'Insufficient permissions'
+            };
+        }
+        
+        // Step 2: Validate ban reason
+        if (!Object.keys(BanSystem.banReasons).includes(banDetails.reason)) {
+            return {
+                success: false,
+                error: 'Invalid ban reason'
+            };
+        }
+        
+        // Step 3: Create ban record
+        const banRecord = {
+            userId: userId,
+            bannedBy: adminId,
+            reason: banDetails.reason,
+            description: banDetails.description,
+            evidence: banDetails.evidence || [],
+            timestamp: new Date().toISOString(),
+            status: 'PENDING_VERIFICATION',
+            verificationLevel: 'LEVEL_1'
+        };
+        
+        // Step 4: Store in database
+        const banId = await saveBanRecord(banRecord);
+        
+        // Step 5: Create verification workflow
+        await createVerificationWorkflow(banId, banRecord);
+        
+        // Step 6: Notify verification team
+        await notifyVerificationTeam(banRecord);
+        
+        return {
+            success: true,
+            banId: banId,
+            status: 'PENDING_VERIFICATION',
+            message: 'Ban request submitted for verification'
+        };
+        
+    } catch (error) {
+        console.error('Ban user error:', error);
+        return {
+            success: false,
+            error: error.message
+        };
+    }
+}
+
+/**
+ * Verify admin permission
+ * @param {string} adminId - Admin ID
+ * @param {string} action - Action to verify
+ * @returns {Promise<boolean>} - Permission status
+ */
+async function verifyAdminPermission(adminId, action) {
+    const admin = await getAdminDetails(adminId);
+    
+    const permissions = {
+        'BAN_USER': [BanSystem.roles.ADMIN, BanSystem.roles.SUPER_ADMIN],
+        'UNBAN_USER': [BanSystem.roles.ADMIN, BanSystem.roles.SUPER_ADMIN],
+        'FINAL_APPROVAL': [BanSystem.roles.SUPER_ADMIN]
+    };
+    
+    return permissions[action]?.includes(admin.role) || false;
+}
+
+/**
+ * Create verification workflow
+ * @param {string} banId - Ban record ID
+ * @param {object} banRecord - Ban details
+ */
+async function createVerificationWorkflow(banId, banRecord) {
+    const workflow = {
+        banId: banId,
+        steps: [
+            {
+                level: 'LEVEL_1',
+                assignedTo: 'moderator_team',
+                status: 'PENDING',
+                deadline: addHours(new Date(), 24)
+            },
+            {
+                level: 'LEVEL_2',
+                assignedTo: 'admin_team',
+                status: 'WAITING',
+                deadline: addHours(new Date(), 48)
+            },
+            {
+                level: 'LEVEL_3',
+                assignedTo: 'super_admin',
+                status: 'WAITING',
+                deadline: addHours(new Date(), 72)
+            }
+        ],
+        currentStep: 0,
+        createdAt: new Date().toISOString()
+    };
+    
+    await saveWorkflow(workflow);
+}
+```
+
+### 3. Unban User Implementation
+
+```javascript
+/**
+ * Unban a user account with verification
+ * @param {string} userId - User ID to unban
+ * @param {string} adminId - Admin performing the action
+ * @param {object} unbanDetails - Unban details
+ * @returns {Promise<object>} - Unban result
+ */
+async function unbanUser(userId, adminId, unbanDetails) {
+    try {
+        // Step 1: Verify admin permissions
+        const hasPermission = await verifyAdminPermission(adminId, 'UNBAN_USER
+        if (!hasPermission) {
+            return {
+                success: false,
+                error: 'Insufficient permissions'
+            };
+        }
+        
+        // Step 2: Get ban record
+        const banR
