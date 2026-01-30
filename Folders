@@ -1,0 +1,168 @@
+
+
+```
+muqaddas-network/
+│
+├── .github/
+│   └── workflows/              # CI/CD pipelines (GitHub Actions)
+│       ├── deploy.yml
+│       ├── test.yml
+│       └── security-scan.yml
+│
+├── docs/                       # Documentation
+│   ├── README.md               # Project overview
+│   ├── CONTRIBUTING.md         # Contribution guidelines
+│   ├── CODE_OF_CONDUCT.md      # Community standards
+│   ├── CHANGELOG.md            # Version history
+│   ├── API_DOCUMENTATION.md    # API reference
+│   └── ARCHITECTURE.md         # System architecture
+│
+├── legal/                      # Legal documents
+│   ├── Privacy_Policy.md
+│   ├── Terms_of_Service.md
+│   ├── Host_Joining_Policy.md
+│   ├── Refund_Policy.md
+│   └── Cookie_Policy.md
+│
+├── training/                   # Training materials
+│   ├── Training_Manual.md
+│   ├── Host_Guide.md
+│   ├── User_Guide.md
+│   └── FAQ.md
+│
+├── src/                        # Source code
+│   ├── frontend/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── styles/
+│   │   ├── utils/
+│   │   └── App.js
+│   │
+│   ├── backend/
+│   │   ├── controllers/
+│   │   ├── models/
+│   │   ├── routes/
+│   │   ├── middleware/
+│   │   ├── services/
+│   │   └── server.js
+│   │
+│   └── shared/                 # Shared utilities
+│       ├── constants.js
+│       ├── helpers.js
+│       └── validators.js
+│
+├── tests/                      # Test files
+│   ├── unit/
+│   ├── integration/
+│   ├── e2e/
+│   └── test-utils.js
+│
+├── config/                     # Configuration files
+│   ├── database.js
+│   ├── payment-gateway.js
+│   ├── email.js
+│   └── environment.js
+│
+├── scripts/                    # Utility scripts
+│   ├── seed-database.js
+│   ├── migrate.js
+│   └── deploy.sh
+│
+├── public/                     # Static assets
+│   ├── images/
+│   ├── icons/
+│   └── index.html
+│
+├── .env.example                # Environment variables template
+├── .gitignore                  # Git ignore rules
+├── package.json                # Node.js dependencies
+├── package-lock.json
+├── Dockerfile                  # Docker configuration
+├── docker-compose.yml
+├── vercel.json                 # Vercel deployment config
+└── LICENSE                     # License file
+```
+
+---
+
+## **Key Folders Explained**
+
+### **1. `.github/workflows/`**
+**Purpose**: Automate testing, deployment, and security scanning.
+
+```yaml
+# Example: .github/workflows/deploy.yml
+name: Deploy to Production
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: Run tests
+        run: npm test
+      - name: Deploy to Vercel
+        run: vercel --prod
+```
+
+---
+
+### **2. `docs/`**
+**Purpose**: Comprehensive project documentation.
+
+**Files to include**:
+- `README.md`: Project overview, setup instructions
+- `API_DOCUMENTATION.md`: API endpoints, request/response examples
+- `ARCHITECTURE.md`: System design, database schema
+- `CONTRIBUTING.md`: How to contribute to the project
+
+---
+
+### **3. `legal/`**
+**Purpose**: Legal compliance documents.
+
+**Files to include**:
+- `Privacy_Policy.md`
+- `Terms_of_Service.md`
+- `Host_Joining_Policy.md`
+- `Refund_Policy.md`
+
+---
+
+### **4. `training/`**
+**Purpose**: Educational materials for users and hosts.
+
+**Files to include**:
+```markdown
+# Training_Manual.md structure:
+1. Getting Started
+2. How to Earn Stars
+3. Star to Coin Conversion
+4. Charity Trigger Mechanism
+5. Broadcasting Guidelines
+6. Best Practices
+7. Troubleshooting
+```
+
+---
+
+### **5. `src/`**
+**Purpose**: Application source code.
+
+**Structure**:
+```
+src/
+├── frontend/
+│   ├── components/
+│   │   ├── Header.jsx
+│   │   ├── Footer.jsx
+│   │   ├── CharityCounter.jsx
+│   │   └── PaymentButton.jsx
+│   ├── pages/
+│   │   ├── Hom
