@@ -1,0 +1,72 @@
+
+---
+
+## **File: friends_vault_protocol.js**
+
+```javascript
+/**
+ * Muqaddas Network V11 - Friends Vault Protocol
+ * Purpose: Secure 1% of total property for friends' emergency security
+ */
+
+class FriendsVault {
+    constructor() {
+        this.vaultPercentage = 0.01;  // 1% of total property
+        this.lockedAmount = 0;         // Amount locked for friends
+        this.authorizedFriends = [];    // List of friends with access
+        this.locked = true;             // Lock status
+        this.creationDate = new Date(); // Creation timestamp
+    }
+
+    /**
+     * Initialize the vault with total property
+     * @param {number} totalProperty - Total value of property
+     */
+    initialize(totalProperty) {
+        this.lockedAmount = totalProperty * this.vaultPercentage;
+        console.log(`Friends Vault Initialized: ₹${this.lockedAmount} locked for security.`);
+    }
+
+    /**
+     * Add a friend to the authorized list
+     * @param {string} friendId - Friend's identifier
+     */
+    authorizeFriend(friendId) {
+        if (!this.authorizedFriends.includes(friendId)) {
+            this.authorizedFriends.push(friendId);
+            console.log(`Friend ${friendId} authorized.`);
+        } else {
+            console.log(`Friend ${friendId} is already authorized.`);
+        }
+    }
+
+    /**
+     * Emergency access to the vault
+     * @param {string} friendId - Friend's identifier
+     * @returns {number | string} - Amount released or message
+     */
+    accessVault(friendId) {
+        if (this.locked) {
+            if (this.authorizedFriends.includes(friendId)) {
+                this.locked = false; // Unlock for emergency
+                console.log(`Emergency access granted to ${friendId}.`);
+                return this.lockedAmount; // Return locked amount
+            } else {
+                return "Unauthorized access attempt!";
+            }
+        } else {
+            return "Vault is already unlocked.";
+        }
+    }
+
+    /**
+     * Lock the vault again after access
+     */
+    lockVault() {
+        this.locked = true;
+        console.log("Friends Vault locked again for security.");
+    }
+
+    /**
+     * Get vault details
+     * @returns {Object} - Vault status and
