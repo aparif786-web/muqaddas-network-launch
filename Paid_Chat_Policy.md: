@@ -1,0 +1,59 @@
+Here’s how you can structure the **Paid Chat Policy** within your **Communication Rules** for the Muqaddas Network:
+
+---
+
+# Communication Rules: Income Source
+
+## Paid Chat Policy
+
+**Effective Date:** [Insert Date]
+
+### Overview
+
+
+---
+
+### 1. **Cost of Messaging**
+- **Fee Structure**: Each user will incur a cost of **10 Coins** to send a message to a host.
+- **Coin Deduction**: The 10 Coins will be deducted from the user's account balance upon initiating the chat.
+
+### 2. **Revenue Distribution**
+- **Host Earnings**: A significant portion of the 10 Coins will be allocated directly to the host’s wallet.
+- 
+
+### 3. **Usage Example**
+```javascript
+function initiateChat(userId, hostId) {
+    const cost = 10; // Coins required to chat
+    const userBalance = getUserBalance(userId);
+    
+    if (userBalance < cost) {
+        return {
+            success: false,
+            message: "Insufficient coins to start a chat."
+        };
+    }
+    
+    // Deduct coins from user's balance
+    updateUserBalance(userId, -cost);
+    
+    // Credit host's wallet
+    const hostEarnings = cost * 0.70; // 70% goes to host
+    updateHostWallet(hostId, hostEarnings);
+    
+    return {
+        success: true,
+        message: "Chat initiated successfully!",
+        remainingBalance: getUserBalance(userId)
+    };
+}
+```
+
+### 4. **Terms of Service**
+- **Refund Policy**: Coins spent on messaging are non-refundable.
+- **User Responsibility**: Users must ensure they have sufficient coins before attempting to message a host.
+- **Abuse Policy**: Any misuse of the chat feature (e.g., harassment, spam) will result in suspension of the user account.
+
+### 5. **Compliance**
+- This policy is compliant with local regulations regarding digital transactions and user privacy.
+- Users are advised to read the **Privacy Policy** and **Terms of Service**
