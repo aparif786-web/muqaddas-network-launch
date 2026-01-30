@@ -1,0 +1,74 @@
+
+---
+
+## **File: Point_Exchange.md**
+
+### **Point Exchange Logic**
+
+**Category**: Finance (Point and Currency Logic)
+
+**Purpose:** Automate the conversion of points earned by hosts into dollars or coins.
+
+### **Conversion Rate**
+- **1 Point = $0.01 (1 cent)**
+- Minimum points for conversion: **100 Points**
+
+### **Automated Logic**
+```javascript
+/**
+ * Convert earned points to currency (USD or Coins)
+ * @param {number} points - Total points earned
+ * @returns {Object} - Contains coins or dollars equivalent
+ */
+function convertPointsToCurrency(points) {
+    const MIN_POINTS = 100;
+    const CONVERSION_RATE = 0.01; // 1 point = $0.01
+
+    if (points < MIN_POINTS) {
+        return {
+            success: false,
+            message: `Minimum ${MIN_POINTS} points required for conversion.`
+        };
+    }
+    
+    const dollars = points * CONVERSION_RATE;
+    const coins = Math.floor(points / 10); // Example: 10 points = 1 coin
+
+    return {
+        success: true,
+        dollars: dollars,
+        coins: coins
+    };
+}
+
+// Example Usage
+const result = convertPointsToCurrency(500); // Converts 500 points
+console.log(result); // { success: true, dollars: 5.00, coins: 50 }
+```
+
+### **Key Features**
+- **Automated Conversion**: Users automatically convert points to currency.
+- **Minimum Threshold**: Ensures users have enough points before conversion.
+- **Transaction Logging**: Keep track of all conversions for auditing.
+
+---
+
+## **File: Service_Fee_Lock.md**
+
+### **Service Fee Logic**
+
+**Category**: Finance (Point and Currency Logic)
+
+**Purpose:** Implement a permanent service fee and charity deduction logic during the coin exchange process.
+
+### **Service Fee Structure**
+- **8% Service Fee** on all star-to-coin exchanges.
+- **2% Charity Deduction** for VIP users.
+
+### **Automated Logic**
+```javascript
+/**
+ * Calculate service fee and charity deduction during point exchange
+ * @param {number} points - Total points to be converted
+ * @param {boolean} isVIP - Whether the user is a VIP
+ * @returns {Object} - Contains net
