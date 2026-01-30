@@ -1,0 +1,588 @@
+
+
+## **Repository Structure: docs/Policies/**
+
+```
+docs/Policies/
+├── Star_Host_Policy.md
+├── Host_Joining_Policy.md
+├── VIP_Gift_Policy.md
+├── Agency_Commission_Policy.md
+├── Charity_Allocation_Policy.md
+├── Content_Moderation_Policy.md
+├── User_Ban_Policy.md
+└── Reward_Distribution_Policy.md
+```
+
+---
+
+## **File 1: Star_Host_Policy.md**
+
+```markdown
+# Star Host Policy
+
+**Version:** 1.0  
+**Effective Date:** January 2026
+
+---
+
+## Service Fees
+
+### Star to Coin Exchange
+- **Fee:** 8% (permanent, immutable)
+- **Applied to:** All star-to-coin conversions
+
+```javascript
+const STAR_EXCHANGE_FEE = Object.freeze({
+  percentage: 0.08,
+  immutable: true
+});
+```
+
+### VIP Gift Charity Deduction
+- **Deduction:** 2% (permanent)
+- **Purpose:** Cancer patient fund
+
+```javascript
+const VIP_CHARITY_DEDUCTION = Object.freeze({
+  percentage: 0.02,
+  destination: "charity-fund"
+});
+```
+
+---
+
+## Weekly Tasks & Rewards
+
+| Broadcast Duration | Points Earned |
+|-------------------|---------------|
+| 12 hours          | 80,000        |
+| 18 hours          | 40,000        |
+| 24 hours          | 80,000        |
+| **Total**         | **200,000**   |
+
+### Ranking Rewards
+- **Eligibility:** Complete 18+ hours
+- **Base Reward:** 200,000 points
+- **Bonus:** Up to 150,000 points (top 20%)
+
+### Live Time Reward
+- **Amount:** $40 USD/week
+- **Frequency:** Weekly
+- **Automatic:** Yes
+
+---
+
+## Maximum Weekly Earnings
+**Total:** 800,000 points/week
+
+---
+
+## Implementation
+
+```javascript
+const HOST_REWARDS = {
+  broadcast: {
+    12: 80000,
+    18: 40000,
+    24: 80000
+  },
+  ranking: {
+    base: 200000,
+    maxBonus: 150000
+  },
+  liveTime: {
+    amount: 40,
+    currency: "USD"
+  }
+};
+
+function calculateHostReward(hoursCompleted) {
+  let totalPoints = 0;
+  
+  if (hoursCompleted >= 24) totalPoints += HOST_REWARDS.broadcast[24];
+  if (hoursCompleted >= 18) totalPoints += HOST_REWARDS.broadcast[18];
+  if (hoursCompleted >= 12) totalPoints += HOST_REWARDS.broadcast[12];
+  
+  return totalPoints;
+}
+```
+```
+
+---
+
+## **File 2: Host_Joining_Policy.md**
+
+```markdown
+# Host Joining Policy
+
+**Version:** 1.0  
+**Effective Date:** January 2026
+
+---
+
+## Joining Requirements
+
+### Registration Fee
+- **Amount:** ₹1 (or $1 USD)
+- **Payment:** One-time, non-refundable
+- **Purpose:** Platform access and verification
+
+```javascript
+const JOINING_FEE = Object.freeze({
+  INR: 1,
+  USD: 1,
+  refundable: false
+});
+```
+
+---
+
+## Code of Conduct
+
+### Mandatory Commitments
+1. Maintain platform purity
+2. Zero tolerance for obscenity
+3. Respect community guidelines
+4. Uphold charity mission
+
+### Oath Statement
+```
+"I pledge to maintain the purity and dignity of the Muqaddas Network,
+to respect all users, and to support our mission of helping cancer
+patients and the poor."
+```
+
+---
+
+## Verification Process
+
+```javascript
+async function processHostJoining(userData) {
+  // Step 1: Verify payment
+  const paymentVerified = await verifyPayment(userData.paymentId);
+  
+  // Step 2: Identity verification
+  const identityVerified = await verifyIdentity(userData);
+  
+  // Step 3: Accept oath
+  const oathAccepted = userData.acceptedOath === true;
+  
+  if (paymentVerified && identityVerified && oathAccepted) {
+    await createHostAccount(userData);
+    return { success: true, hostId: generateHostId() };
+  }
+  
+  return { success: false, reason: "Verification failed" };
+}
+```
+
+---
+
+## Account Activation
+
+### Timeline
+- Payment verification: Instant
+- Identity verification: 24-48 hours
+- Account activation: Upon approval
+
+### Requirements
+- Valid government ID
+- Active phone number
+- Email verification
+- Payment confirmation
+```
+
+---
+
+## **File 3: VIP_Gift_Policy.md**
+
+```markdown
+# VIP Gift Policy
+
+**Version:** 1.0  
+**Effective Date:** January 2026
+
+---
+
+## Gift Processing
+
+### Charity Deduction
+- **Rate:** 2% of all VIP/Queen gifts
+- **Automatic:** Yes
+- **Destination:** Cancer patient charity fund
+
+```javascript
+const VIP_GIFT_POLICY = Object.freeze({
+  charityRate: 0.02,
+  automatic: true,
+  destination: "charity-vault"
+});
+
+function processVIPGift(giftAmount) {
+  const charityDeduction = giftAmount * VIP_GIFT_POLICY.charityRate;
+  const hostReceives = giftAmount * (1 - VIP_GIFT_POLICY.charityRate);
+  
+  // Auto-transfer to charity
+  transferToCharityVault(charityDeduction);
+  
+  return {
+    totalGift: giftAmount,
+    charityDeduction,
+    hostReceives,
+    charityPercentage: 2
+  };
+}
+```
+
+---
+
+## Gift Limits
+
+| VIP Level | Daily Limit | Monthly Limit |
+|-----------|-------------|---------------|
+| VIP 1     | $100        | $1,000        |
+| VIP 2     | $500        | $5,000        |
+| VIP 3     | $1,000      | $10,000       |
+| Queen     | Unlimited   | Unlimited     |
+
+---
+
+## Transparency
+
+### Public Ledger
+- All charity deductions recorded
+- Blockchain-verified transactions
+- Real-time counter updates
+
+```javascript
+async function recordCharityDeduction(transaction) {
+  await db.collection('charity_ledger').insertOne({
+    transactionId: transaction.id,
+    amount: transaction.charityDeduction,
+    source: 'vip-gift',
+    timestamp: new Date(),
+    immutable: true,
+    blockchainHash: await generateHash(transaction)
+  });
+  
+  // Update live counter
+  await updateLiveCharityCounter(transaction.charityDeduction);
+}
+```
+```
+
+---
+
+## **File 4: Agency_Commission_Policy.md**
+
+```markdown
+# Agency Commission Policy
+
+**Version:** 1.0  
+**Effective Date:** January 2026
+
+---
+
+## Commission Structure
+
+### Automated Gap Commission
+- **Level 1-10:** 12%
+- **Level 11-15:** 16%
+- **Level 16-20:** 20%
+
+```javascript
+const AGENCY_COMMISSION = {
+  levels: {
+    '1-10': 0.12,
+    '11-15': 0.16,
+    '16-20': 0.20
+  },
+  maxLevel: 20
+};
+
+function calculateCommission(agencyLevel, transactionAmount) {
+  let rate;
+  
+  if (agencyLevel <= 10) rate = AGENCY_COMMISSION.levels['1-10'];
+  else if (agencyLevel <= 15) rate = AGENCY_COMMISSION.levels['11-15'];
+  else rate = AGENCY_COMMISSION.levels['16-20'];
+  
+  return {
+    level: agencyLevel,
+    rate: rate * 100,
+    commission: transactionAmount * rate
+  };
+}
+```
+
+---
+
+## Level Progression
+
+### Fast Track to Level 20
+- **Requirement:** $3,000 monthly volume
+- **Benefit:** Direct promotion to Level 20
+- **Duration:** Permanent
+
+```javascript
+async function checkFastTrackEligibility(agencyId, month) {
+  const volume = await getMonthlyVolume(agencyId, month);
+  
+  if (volume >= 3000) {
+    await promoteToLevel20(agencyId);
+    return {
+      eligible: true,
+      newLevel: 20,
+      commission: AGENCY_COMMISSION.levels['16-20']
+    };
+  }
+  
+  return { eligible: false };
+}
+```
+
+---
+
+## Payment Terms
+- **Frequency:** Weekly
+- **Minimum:** $10
+- **Processing:** 24-48 hours
+- **Method:** Bank transfer or crypto
+```
+
+---
+
+## **File 5: Charity_Allocation_Policy.md**
+
+```markdown
+# Charity Allocation Policy
+
+**Version:** 1.0  
+**Effective Date:** January 2026
+
+---
+
+## Allocation Rules
+
+### Revenue Distribution
+- **45%** → Charity (cancer patients & orphans)
+- **45%** → Technology development
+- **10%** → Family equity
+
+```javascript
+const REVENUE_ALLOCATION = Object.freeze({
+  charity: 0.45,
+  techDevelopment: 0.45,
+  familyEquity: 0.10,
+  immutable: true
+});
+
+function allocateRevenue(totalRevenue) {
+  return {
+    charity: totalRevenue * REVENUE_ALLOCATION.charity,
+    techDev: totalRevenue * REVENUE_ALLOCATION.techDevelopment,
+    family: totalRevenue * REVENUE_ALLOCATION.familyEquity
+  };
+}
+```
+
+---
+
+## Charity Trigger
+
+### 100% Charity Mode
+- **Threshold:** ₹50,000 revenue
+- **After Trigger:** 100% to charity
+- **Permanent:** Yes
+
+```javascript
+class CharityTrigger {
+  constructor() {
+    this.threshold = 50000;
+    this.triggered = false;
+    this.totalRevenue = 0;
+  }
+  
+  processRevenue(amount) {
+    this.totalRevenue += amount;
+    
+    if (this.totalRevenue >= this.threshold) {
+      this.triggered = true;
+    }
+    
+    const charityAmount = this.triggered 
+      ? amount * 1.00  // 100%
+      : amount * 0.45; // 45%
+    
+    return { charityAmount, triggered: this.triggered };
+  }
+}
+```
+
+---
+
+## Transparency Measures
+- Real-time charity counter
+- Blockchain ledger
+- Monthly public reports
+- Third-party audits
+```
+
+---
+
+## **File 6: Content_Moderation_Policy.md**
+
+```markdown
+# Content Moderation Policy
+
+**Version:** 1.0  
+**Effective Date:** January 2026
+
+---
+
+## Prohibited Content
+
+### Zero Tolerance
+1. Obscenity and adult content
+2. Hate speech
+3. Violence and graphic content
+4. Harassment and bullying
+5. Illegal activities
+
+---
+
+## AI Moderation
+
+### Purity Shield
+```javascript
+class PurityShield {
+  async scanContent(content) {
+    const threats = [];
+    
+    if (await this.detectProfanity(content)) {
+      threats.push('PROFANITY');
+    }
+    
+    if (await this.detectNudity(content)) {
+      threats.push('NUDITY');
+    }
+    
+    if (threats.length > 0) {
+      return {
+        allowed: false,
+        threats,
+        action: 'BLOCK'
+      };
+    }
+    
+    return { allowed: true };
+  }
+}
+```
+
+---
+
+## Enforcement
+- **First Violation:** Warning
+- **Second Violation:** 7-day suspension
+- **Third Violation:** Permanent ban
+```
+
+---
+
+## **File 7: User_Ban_Policy.md**
+
+```markdown
+# User Ban Policy
+
+**Version:** 1.0  
+**Effective Date:** January 2026
+
+---
+
+## Ban Procedures
+
+### Manual Verification Required
+- All bans require official team approval
+- Automated bans flagged for review
+- Appeal process available
+
+```javascript
+async function processBanRequest(userId, reason) {
+  // Flag for manual review
+  await db.collection('ban_requests').insertOne({
+    userId,
+    reason,
+    status: 'PENDING_REVIEW',
+    timestamp: new Date()
+  });
+  
+  // Notify moderation team
+  await notifyModerationTeam({
+    userId,
+    reason,
+    priority: calculatePriority(reason)
+  });
+  
+  return { status: 'PENDING_REVIEW' };
+}
+```
+
+---
+
+## Unban Process
+- Submit appeal with evidence
+- Team review within 48 hours
+- Decision final and binding
+```
+
+---
+
+## **File 8: Reward_Distribution_Policy.md**
+
+```markdown
+# Reward Distribution Policy
+
+**Version:** 1.0  
+**Effective Date:** January 2026
+
+---
+
+## Distribution Schedule
+
+### Weekly Rewards
+- **Processing:** Every Monday
+- **Payment:** Within 48 hours
+- **Minimum:** 50,000 points ($5)
+
+```javascript
+const REWARD_POLICY = {
+  frequency: 'weekly',
+  processingDay: 'Monday',
+  minimumPayout: 50000,
+  processingTime: '48 hours'
+};
+
+async function processWeeklyRewards() {
+  const eligibleHosts = await getEligibleHosts();
+  
+  for (const host of eligibleHosts) {
+    if (host.points >= REWARD_POLICY.minimumPayout) {
+      await processPayment(host);
+    }
+  }
+}
+```
+
+---
+
+## Payment Methods
+- Bank transfer
+- Cryptocurrency
+- Digital wallets
+- UPI (India)
+```
+
+---
+
